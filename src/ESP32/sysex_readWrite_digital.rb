@@ -11,13 +11,13 @@ arduino.on :sysex do |command, data|
     if command == 0x02
         puts "command : #{command}"
         puts "data    : #{data.inspect}"
+        sleep 2
     end 
 end
 
-
+## send sysex command at the digital tratament case 0x02.
+arduino.sysex 0x02, [22, 23]  #read at pin 22 and write at pin 23
 
 loop do
-    ## send sysex command at the digital tratament case 0x02.
-    arduino.sysex 0x02, [22, 23]  #read at pin 22 and write at pin 23
     sleep 1
 end 

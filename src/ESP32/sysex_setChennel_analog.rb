@@ -11,13 +11,13 @@ arduino.on :sysex do |command, data|
     if command == 0x03
         puts "command : #{command}"
         puts "data    : #{data.inspect}"
+        sleep 2
     end
 end
 
+## send sysex command at the tratament case analog 0x03
+arduino.sysex 0x03, [32, 33, 1]  #read at pin 32, write at pin 33 and set channel 1
 
-
-loop do
-    ## send sysex command at the tratament case analog 0x03
-    arduino.sysex 0x03, [32, 33, 1]  #read at pin 32, write at pin 33 and set channel 1
+loop do    
     sleep 1
 end 
