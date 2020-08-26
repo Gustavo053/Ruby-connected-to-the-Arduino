@@ -3,11 +3,11 @@ $:.unshift File.expand_path '../../lib', File.dirname(__FILE__)
 require 'rubygems'
 require 'arduino_firmata'
 
-arduino = ArduinoFirmata.connect "/dev/ttyUSB0" 
-puts "firmata version #{arduino.version}"
+esp32 = ArduinoFirmata.connect "/dev/ttyUSB0" 
+puts "firmata version #{esp32.version}"
 
 ## regist event
-arduino.on :sysex do |command, data|
+esp32.on :sysex do |command, data|
     if command == 0x02
         puts "command : #{command}"
         puts "data    : #{data.inspect}"
@@ -16,7 +16,7 @@ arduino.on :sysex do |command, data|
 end
 
 ## send sysex command at the digital tratament case 0x02.
-arduino.sysex 0x02, [22, 23]  #read at pin 22 and write at pin 23
+esp32.sysex 0x02, [18, 19]  #read at pin 22 and write at pin 23
 
 loop do
     sleep 1
