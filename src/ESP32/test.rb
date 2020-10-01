@@ -11,13 +11,13 @@ esp32.on :sysex do |command, data|
     if command == 0x03
         puts "command : #{command}"
         puts "data    : #{data.inspect}"
-        puts '------------------------------------'
+        sleep 2
     end
 end
 
-loop do
-    ## send sysex command at the tratament case analog 0x03
-    esp32.sysex 0x03, [32, 33]  #read at pin 32 and write at pin 33
+## send sysex command at the tratament case analog 0x03
+esp32.sysex 0x03, [32, 33, 1]  #read at pin 32, write at pin 33 and set channel 1
 
-    sleep 0.001
+loop do    
+    sleep 1
 end 
